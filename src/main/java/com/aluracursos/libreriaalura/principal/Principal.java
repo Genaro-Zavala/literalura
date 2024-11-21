@@ -104,7 +104,7 @@ public class Principal {
 
         //restriccion si no ingresa dato
             if (tituloLibro.isEmpty()){
-                System.out.println("No ingreso dato..");
+                System.out.println("No ingreso ningun dato..");
                 return;
             }
 
