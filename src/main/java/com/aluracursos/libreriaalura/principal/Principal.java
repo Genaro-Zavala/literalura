@@ -8,7 +8,6 @@ import com.aluracursos.libreriaalura.service.ConvierteDatos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -29,16 +28,13 @@ public class Principal {
     @Autowired
     private LibroRepository libroRepository;
 
-   // private List<Optional<DatosLibros>> datosLibros = new ArrayList<Optional<DatosLibros>>();
-
     private Scanner teclado = new Scanner(System.in);
-
-    private boolean exe;
+    //private boolean exe;
 
 
     public Principal() {
         this.teclado = new Scanner(System.in);
-        this.exe =true;
+       // this.exe =true;
     }
 
     public void muestraElMenu() {
@@ -98,29 +94,26 @@ public class Principal {
     private void buscarLibro() {
 
         try {
-        System.out.println("Ingrese el nombre del libro a buscar: ");
-        //cambiar String por var
-        var tituloLibro = teclado.nextLine();
+            System.out.println("Ingrese el nombre del libro a buscar: ");
+            var tituloLibro = teclado.nextLine();
 
-        //restriccion si no ingresa dato
+            //Verifica sino se ingreso algun dato
             if (tituloLibro.isEmpty()){
                 System.out.println("No ingreso ningun dato..");
                 return;
             }
 
 
-        //busca en bd primero
-        Optional<Libro> libroBD = libroRepository.findByTituloContainingIgnoreCase(tituloLibro);
-        if (libroBD.isPresent()){
-            System.out.println("\n Libro existente en BD");
+            //Busca si existe en la Base de datos
+            Optional<Libro> libroBD = libroRepository.findByTituloContainingIgnoreCase(tituloLibro);
+            if (libroBD.isPresent()){
+            System.out.println("\nLibro existente en Base de Datos");
             System.out.println(libroBD.get());
             return;
-        }
+            }
 
 
-        var json = consumoAPI.obtenerDatos(URL_BASE + tituloLibro.replace(" ", "+"));
-        //cambiar Datos datosBusqueda x var datosBusqueda
-
+            var json = consumoAPI.obtenerDatos(URL_BASE + tituloLibro.replace(" ", "+"));
             if (json==null||json.isEmpty()){
                 System.out.println("sin respuesta de API");
                 return;
@@ -163,11 +156,11 @@ public class Principal {
         try {
 
             if (datosLibro.autor()==null||datosLibro.autor().isEmpty()){
-                System.out.println("libro sin autor registrado");
+                System.out.println("Libro sin autor registrado");
                 return;
             }
 
-            //guarda datos de autor
+            //Guarda los datos del autor
             DatosAutor datosAutor = datosLibro.autor().get(0);
             Autor autor = autorRepository.findByNombre(datosAutor.nombre())
                     .orElseGet(() -> {
@@ -181,7 +174,7 @@ public class Principal {
                 return;
             }
 
-            //guardar libro
+            //Guardar los datos del libro
             Libro libro = new Libro(datosLibro,autor);
             Libro libroGuardado = libroRepository.save(libro);
             System.out.println("\n Libro guardado:");
@@ -207,10 +200,10 @@ public class Principal {
     }
 
     private void listarAutoresRegistrados() {
-        System.out.println("\n Autores registrados");
+        System.out.println("\nAutores registrados");
         List<Autor> autores = autorRepository.findAutoresConLibros();
         if (autores.isEmpty()){
-            System.out.printf("Sin autores registrados");
+            System.out.println("Sin autores registrados");
             return;
         }
 
@@ -227,9 +220,6 @@ public class Principal {
         }
 
     }
-
-
-
 
     private void listarAutoresPorAnho() {
 
@@ -257,11 +247,6 @@ public class Principal {
 
     }
 
-
-
-
-
-
     private void listarLibrosPorIdioma() {
 
         System.out.println("Ingrese el idioma de los libros a listar: ");
@@ -279,7 +264,7 @@ public class Principal {
         if (!idiomaBuscado.equals("es")&&!idiomaBuscado.equals("en")&&!idiomaBuscado.equals("fr")&&!idiomaBuscado.equals("it")){
             System.out.println("Idioma no valido...");
             listarLibrosPorIdioma();
-            //return;
+
         } else {
 
             List<Libro> libros = libroRepository.findAll();
@@ -292,7 +277,5 @@ public class Principal {
                     System.out.printf("* %s || Autor: %s%n",libro.getTitulo(), libro.getAutor().getNombre()));
         }
     }
-
-
 
 }
