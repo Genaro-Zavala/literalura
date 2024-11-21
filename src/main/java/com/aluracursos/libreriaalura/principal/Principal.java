@@ -177,7 +177,7 @@ public class Principal {
             //Guardar los datos del libro
             Libro libro = new Libro(datosLibro,autor);
             Libro libroGuardado = libroRepository.save(libro);
-            System.out.println("\n Libro guardado:");
+            System.out.println("\nLibro guardado:");
             System.out.println(libroGuardado);
             //return;
 
@@ -190,7 +190,7 @@ public class Principal {
 
 
     private void listarLibrosBuscados() {
-        System.out.println("\n --Libros registrados--");
+        System.out.println("\n--Libros registrados--");
         List<Libro> libros = libroRepository.findAll();
         if (libros.isEmpty()){
             System.out.println("no hay libros registrados");
