@@ -122,7 +122,7 @@ public class Principal {
         //cambiar Datos datosBusqueda x var datosBusqueda
 
             if (json==null||json.isEmpty()){
-                System.out.println("sin respuesta de API");
+                System.out.println("Sin respuesta de API");
                 return;
             }
 
