@@ -1,9 +1,6 @@
 package com.aluracursos.libreriaalura.model;
 
 import jakarta.persistence.*;
-import java.util.List;
-
-
 
 @Entity
 @Table(name = "libros")
@@ -31,7 +28,6 @@ public class Libro {
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -39,7 +35,6 @@ public class Libro {
     public String getTitulo() {
         return titulo;
     }
-
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
@@ -47,7 +42,6 @@ public class Libro {
     public Autor getAutor() {
         return autor;
     }
-
     public void setAutor(Autor autor) {
         this.autor = autor;
     }
@@ -55,7 +49,6 @@ public class Libro {
     public String getIdioma() {
         return idioma;
     }
-
     public void setIdioma(String idioma) {
         this.idioma = idioma;
     }
@@ -63,7 +56,6 @@ public class Libro {
     public Double getNumeroDescargas() {
         return numeroDescargas;
     }
-
     public void setNumeroDescargas(Double numeroDescargas) {
         this.numeroDescargas = numeroDescargas;
     }

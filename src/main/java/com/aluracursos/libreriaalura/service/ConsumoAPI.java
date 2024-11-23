@@ -18,7 +18,7 @@ public class ConsumoAPI {
                 .uri(URI.create(url))
                 .build();
 
-       HttpResponse<String> response = null;
+        HttpResponse<String> response = null;
         //HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
 
         try {
@@ -33,9 +33,5 @@ public class ConsumoAPI {
         String json = response.body();
         return json;
     }
-
-
-
-
 
 }
