@@ -19,7 +19,6 @@ public class ConsumoAPI {
                 .build();
 
         HttpResponse<String> response = null;
-        //HttpResponse<String> response = client.send(request,HttpResponse.BodyHandlers.ofString());
 
         try {
             response = client
@@ -29,7 +28,7 @@ public class ConsumoAPI {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        //revisar si va las dos lineas siguientes
+
         String json = response.body();
         return json;
     }

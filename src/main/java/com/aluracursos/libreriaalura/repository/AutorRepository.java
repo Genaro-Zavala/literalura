@@ -12,7 +12,7 @@ public interface AutorRepository extends JpaRepository<Autor,Long> {
     @Query("SELECT a FROM Autor a JOIN FETCH a.libros")
     List<Autor> findAutoresConLibros(); // Consulta para obtener autores con sus libros
 
-    // Encontrar autor por nombre
+    // Encuentra autor por nombre
     Optional<Autor> findByNombre(String nombre);
 
 }

@@ -30,11 +30,8 @@ public class Principal {
 
     private Scanner teclado = new Scanner(System.in);
 
-
-
     public Principal() {
         this.teclado = new Scanner(System.in);
-
     }
 
     public void muestraElMenu() {
@@ -103,7 +100,6 @@ public class Principal {
                 return;
             }
 
-
             //Busca si existe en la Base de datos
             Optional<Libro> libroBD = libroRepository.findByTituloContainingIgnoreCase(tituloLibro);
             if (libroBD.isPresent()){
@@ -165,7 +161,7 @@ public class Principal {
             Autor autor = autorRepository.findByNombre(datosAutor.nombre())
                     .orElseGet(() -> {
                         Autor nuevoAutor = new Autor(datosAutor);
-                        System.out.println("guardando nuevo: "+datosAutor.nombre());
+                        System.out.println("Guardando nuevo: "+datosAutor.nombre());
                         return autorRepository.save(nuevoAutor);
                     });
 
@@ -174,7 +170,7 @@ public class Principal {
                 return;
             }
 
-            //Guardar los datos del libro
+            //Guardar los datos del libro...
             Libro libro = new Libro(datosLibro,autor);
             Libro libroGuardado = libroRepository.save(libro);
             System.out.println("\nLibro guardado:");
@@ -276,5 +272,4 @@ public class Principal {
                     System.out.printf("* %s || Autor: %s%n",libro.getTitulo(), libro.getAutor().getNombre()));
         }
     }
-
 }
