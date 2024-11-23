@@ -179,10 +179,9 @@ public class Principal {
             Libro libroGuardado = libroRepository.save(libro);
             System.out.println("\nLibro guardado:");
             System.out.println(libroGuardado);
-            //return;
+
 
         } catch (Exception e) {
-            //throw new RuntimeException(e);
             System.out.println("Error"+ e.getMessage());
         }
 
