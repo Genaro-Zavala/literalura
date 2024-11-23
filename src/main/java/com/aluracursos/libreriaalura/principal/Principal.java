@@ -29,12 +29,12 @@ public class Principal {
     private LibroRepository libroRepository;
 
     private Scanner teclado = new Scanner(System.in);
-    //private boolean exe;
+
 
 
     public Principal() {
         this.teclado = new Scanner(System.in);
-       // this.exe =true;
+
     }
 
     public void muestraElMenu() {

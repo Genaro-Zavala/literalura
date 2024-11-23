@@ -34,8 +34,4 @@ public class ConsumoAPI {
         return json;
     }
 
-
-
-
-
 }
